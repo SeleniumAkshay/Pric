@@ -17,6 +17,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
+import com.Pric.POM.Home_Page;
+import com.Pric.POM.SignIn_Page;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -32,6 +34,8 @@ public class Base_Test {
 	public Java_Utility javaUtility = new Java_Utility();
 	public WebDriver_Utility webdriverUtility = new WebDriver_Utility();
 	public WebDriverWait wait;
+	public SignIn_Page signPage;
+	public Home_Page homePage;
 
 	@BeforeSuite
 	public void beforeSuite() {
@@ -65,6 +69,8 @@ public class Base_Test {
 			System.out.println("Invalid Browser Name");
 		}
 		sdriver = driver;
+		homePage = new Home_Page(driver);
+		wait=new WebDriverWait(driver, Duration.ofSeconds(25));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
 		driver.get(url);
@@ -74,11 +80,18 @@ public class Base_Test {
 	@BeforeMethod
 	public void beforeMethod() throws IOException, InterruptedException {
 		System.out.println("@BeforeMethod");
+		signPage = new SignIn_Page(driver);
+		signPage.getPhoneNumberTextField().sendKeys(file.readPropertyData("phoneNumber"));
+		signPage.getSendOtpButton().click();
 	}
 
 	@AfterMethod
 	public void afterMethod() throws InterruptedException {
 		System.out.println("@AfterMethod");
+		Thread.sleep(2000);
+		webdriverUtility.javaScriptScrollToElement(homePage.getSignOutButton());
+		homePage.getSignOutButton().click();
+		homePage.getSignOutPopup().click();
 	}
 
 	@AfterClass

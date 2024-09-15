@@ -11,6 +11,13 @@ public class SignIn_Page {
 		PageFactory.initElements(driver, this);
 	}
 	
+	@FindBy(partialLinkText = "SignUp")
+	private WebElement signUpButton;
+	
+	public WebElement getSignUpButton() {
+		return signUpButton;
+	}
+
 	@FindBy(name="tel")
 	private WebElement phoneNumberTextField;
 	

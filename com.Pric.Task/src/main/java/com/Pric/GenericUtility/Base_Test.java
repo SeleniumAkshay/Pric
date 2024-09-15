@@ -70,6 +70,7 @@ public class Base_Test {
 		}
 		sdriver = driver;
 		homePage = new Home_Page(driver);
+		signPage = new SignIn_Page(driver);
 		wait=new WebDriverWait(driver, Duration.ofSeconds(25));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
@@ -80,18 +81,17 @@ public class Base_Test {
 	@BeforeMethod
 	public void beforeMethod() throws IOException, InterruptedException {
 		System.out.println("@BeforeMethod");
-		signPage = new SignIn_Page(driver);
-		signPage.getPhoneNumberTextField().sendKeys(file.readPropertyData("phoneNumber"));
-		signPage.getSendOtpButton().click();
+//		signPage.getPhoneNumberTextField().sendKeys(file.readPropertyData("phoneNumber"));
+//		signPage.getSendOtpButton().click();
 	}
 
 	@AfterMethod
 	public void afterMethod() throws InterruptedException {
 		System.out.println("@AfterMethod");
 		Thread.sleep(2000);
-		webdriverUtility.javaScriptScrollToElement(homePage.getSignOutButton());
-		homePage.getSignOutButton().click();
-		homePage.getSignOutPopup().click();
+//		webdriverUtility.javaScriptScrollToElement(homePage.getSignOutButton());
+//		homePage.getSignOutButton().click();
+//		homePage.getSignOutPopup().click();
 	}
 
 	@AfterClass

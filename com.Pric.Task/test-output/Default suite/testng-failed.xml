@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Pric_testScripts.VerifyUserIsAbleToCreateLockedMessage">
+      <class name="com.Pric_testScripts.VerifyUserIsAbleToSignUp">
         <methods>
+          <include name="createLockedMessage"/>
           <include name="beforeTest"/>
           <include name="afterMethod"/>
-          <include name="createLockedMessage"/>
           <include name="afterTest"/>
           <include name="beforeSuite"/>
           <include name="afterClass"/>
@@ -15,7 +15,7 @@
           <include name="beforeClass"/>
           <include name="beforeMethod"/>
         </methods>
-      </class> <!-- com.Pric_testScripts.VerifyUserIsAbleToCreateLockedMessage -->
+      </class> <!-- com.Pric_testScripts.VerifyUserIsAbleToSignUp -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
